@@ -1,0 +1,11 @@
+<div class="event-card row">
+    <div class="content-in-card col-9">
+        {{ obj.desc }}
+    </div>
+    <div class="time-part col-2">
+        <span class="time-span">{{ obj.timestamp }}</span>
+    </div>
+    <div class="col-1 del-box">
+        <a class="del-link" href="{{ obj.id }}"><i class="fas fa-trash"></i></a>
+    </div>
+</div>
