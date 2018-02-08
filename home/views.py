@@ -1,23 +1,23 @@
-from django.shortcuts import render, redirect
-from django.views.generic.base import View
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import CreateView
 
-from home.models import Event
-
-
-class HomeView(View):
-    def get(self, request):
-
-        qs = Event.objects.all().order_by('-timestamp')
-
-        context = {
-            'object_list': qs,
-        }
-
-        return render(request, 'home/home.html', context)
+from .models import Event
+from .forms import EventForm
 
 
-def delete(request, pk):
+class HomeView(CreateView):
+    form_class = EventForm
+    template_name = 'home/home.html'
 
-    Event.objects.get(pk=pk).delete()
+    def get_context_data(self, *args, **kwargs):
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        qs = Event.objects.all()
+        context['object_list'] = qs
 
+        return context
+
+
+def delete(request, pk=None):
+    instance = get_object_or_404(Event, id=pk)
+    instance.delete()
     return redirect("/")

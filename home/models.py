@@ -9,7 +9,7 @@ class Event(models.Model):
         ordering = ['-timestamp']
 
     def __str__(self):
-        return self.timestamp
+        return self.desc
 
     def get_absolute_url(self):
         return '/'

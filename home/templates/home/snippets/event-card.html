@@ -5,7 +5,9 @@
     <div class="time-part col-2">
         <span class="time-span">{{ obj.timestamp }}</span>
     </div>
-    <div class="col-1 del-box">
-        <a class="del-link" href="{{ obj.id }}"><i class="fas fa-trash"></i></a>
+    <div class="col-1 del-box" onclick="location.href='{{ obj.id }}/delete/'">
+        <a class="del-link" href="{{ obj.id }}/delete/"><i class="fas fa-trash"></i></a>
     </div>
 </div>
+
+{# {% url 'index:delete' pk=obj.id %} #}
